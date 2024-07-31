@@ -1,12 +1,26 @@
-function Todo() {
+import useTodoStore from "../state";
+
+function Todo({ todo }) {
+  const changeTodoStatus = useTodoStore((state) => state.changeTodoStatus);
+  console.log(todo);
+  const handleStatus = (id) => {
+    changeTodoStatus(id);
+  };
   return (
     <div className="flex gap-2 items-center">
-      <input id="todo-check" type="checkbox" />
+      <input
+        onChange={() => handleStatus(todo.id)}
+        id={todo.id}
+        type="checkbox"
+        name="todo-check"
+      />
       <label
-        className="font-serif font-medium text-lg capitalize"
-        htmlFor="todo-check"
+        className={`font-serif font-medium text-lg capitalize ${
+          todo.status ? "line-through" : ""
+        }`}
+        htmlFor={todo.id}
       >
-        Todo title
+        {todo?.title}
       </label>
     </div>
   );
