@@ -1,16 +1,26 @@
+import { useState } from "react";
 import CreateTodo from "./components/CreateTodo";
 import Todos from "./components/Todos";
 
 function App() {
+  const [isEdit, setIsEdit] = useState(false);
+  const [editedTodo, setEditedTodo] = useState(null);
+  // console.log("edited", editedTodo);
+
   return (
     <>
       <div className="w-screen h-screen flex flex-col gap-5 justify-center items-center">
         <h1 className="font-serif font-bold text-3xl text-center">Todo List</h1>
         <div className="px-4 py-2 rounded-lg bg-gray-300 border min-w-[500px] border-gray-200 shadow-md">
-          <CreateTodo />
+          <CreateTodo
+            editedTodo={editedTodo}
+            isEdit={isEdit}
+            onSetIsEdit={setIsEdit}
+            onSetEditedTodo={setEditedTodo}
+          />
         </div>
         <div className=" min-w-[500px]">
-          <Todos />
+          <Todos onSetEditedTodo={setEditedTodo} onSetEdit={setIsEdit} />
         </div>
       </div>
     </>

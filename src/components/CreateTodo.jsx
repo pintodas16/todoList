@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useTodoStore from "../state";
 
 const id = () => {
   return `id-${Math.random().toString(36).substring(2, 9)}`;
 };
-function CreateTodo() {
+function CreateTodo({ isEdit, editedTodo, onSetIsEdit, onSetEditedTodo }) {
+  // console.log(isEdit, editedTodo);
   const addTodo = useTodoStore((state) => state.addTodo);
+  const updateTodo = useTodoStore((state) => state.updateTodo);
+
   const [createTodo, setCreateTodo] = useState("");
+  useEffect(() => {
+    if (isEdit && editedTodo) {
+      setCreateTodo(editedTodo?.title);
+    }
+  }, [isEdit, editedTodo]);
+
   const handleChange = (e) => {
     setCreateTodo(e.target.value);
   };
@@ -17,8 +26,15 @@ function CreateTodo() {
       id: id(),
       status: false,
     };
-    addTodo(todo);
-    setCreateTodo("");
+    if (isEdit && editedTodo) {
+      updateTodo({ ...editedTodo, title: createTodo });
+      onSetIsEdit(false);
+      onSetEditedTodo(null);
+      setCreateTodo("");
+    } else {
+      addTodo(todo);
+      setCreateTodo("");
+    }
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -35,7 +51,7 @@ function CreateTodo() {
           type="submit"
           className="bg-sky-600 py-1.5 px-3 rounded-md font-serif font-medium text-xl text-white hover:bg-sky-400"
         >
-          Create
+          {isEdit ? "Update" : "Create"}
         </button>
       </div>
     </form>

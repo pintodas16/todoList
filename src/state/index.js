@@ -28,6 +28,23 @@ const todoStore = (set, get) => ({
       todos: newTodos,
     }));
   },
+  updateTodo: (userTodo) => {
+    console.log(userTodo);
+    const todos = get().todos;
+    // console.log("todos", todos);
+    // console.log("userTodo", userTodo);
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === userTodo.id) {
+        console.log("match", userTodo);
+        return { ...todo, title: userTodo.title };
+      }
+      return todo;
+    });
+    console.log("updatedTodo", updatedTodos);
+    set((state) => ({
+      todos: updatedTodos,
+    }));
+  },
 });
 
 const useTodoStore = create(todoStore);
