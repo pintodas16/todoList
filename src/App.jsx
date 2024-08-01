@@ -9,7 +9,7 @@ function App() {
         <div className="px-4 py-2 rounded-lg bg-gray-300 border min-w-[500px] border-gray-200 shadow-md">
           <CreateTodo />
         </div>
-        <div className="px-4 py-2 rounded-lg bg-gray-300 min-w-[500px] border border-gray-200 shadow-md">
+        <div className=" min-w-[500px]">
           <Todos />
         </div>
       </div>

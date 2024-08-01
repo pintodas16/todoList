@@ -7,7 +7,7 @@ function Todos() {
     <div>
       {/* for filter and search  */}
       <div></div>
-      <div>
+      <div className="flex flex-col gap-3">
         {todos.map((todo) => (
           <Todo key={todo?.id} todo={todo} />
         ))}

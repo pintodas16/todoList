@@ -21,6 +21,13 @@ const todoStore = (set, get) => ({
       todos: updatedTodos,
     }));
   },
+  deleteTodo: (todoId) => {
+    const todos = get().todos;
+    const newTodos = todos.filter((todo) => todo.id !== todoId);
+    set((state) => ({
+      todos: newTodos,
+    }));
+  },
 });
 
 const useTodoStore = create(todoStore);
