@@ -1,8 +1,7 @@
 import useTodoStore from "../state";
 import Todo from "./Todo";
-function Todos({ onSetEdit, onSetEditedTodo }) {
-  const todos = useTodoStore((state) => state.todos);
-  // console.log(todos);
+function Todos({ todos, onSetEdit, onSetEditedTodo }) {
+  console.log(todos);
   return (
     <div>
       {/* for filter and search  */}

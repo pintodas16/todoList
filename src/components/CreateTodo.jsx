@@ -49,7 +49,7 @@ function CreateTodo({ isEdit, editedTodo, onSetIsEdit, onSetEditedTodo }) {
         />
         <button
           type="submit"
-          className="bg-sky-600 py-1.5 px-3 rounded-md font-serif font-medium text-xl text-white hover:bg-sky-400"
+          className="bg-blue-500 py-1.5 px-3 rounded-md font-serif font-medium text-xl text-white hover:bg-blue-400"
         >
           {isEdit ? "Update" : "Create"}
         </button>
